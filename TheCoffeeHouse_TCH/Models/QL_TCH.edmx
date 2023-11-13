@@ -1,0 +1,775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QL_TCHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCOUNT_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="TENDANGNHAPNV" />
+          </Key>
+          <Property Name="TENDANGNHAPNV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MATKHAUNV" Type="nvarchar" MaxLength="50" />
+          <Property Name="MANV" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="LOAITAIKHOAN" Type="int" />
+        </EntityType>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameUser" Type="nvarchar(max)" />
+          <Property Name="RoleUser" Type="nvarchar(max)" />
+          <Property Name="PasswordUser" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="MALOAIHANG" />
+          </Key>
+          <Property Name="MALOAIHANG" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="TENLOAIHANG" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="TENKH" Type="nvarchar" MaxLength="200" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="15" />
+          <Property Name="OTP" Type="int" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="NGAYSINH" Type="datetime" />
+          <Property Name="THANHPHO" Type="nvarchar(max)" />
+          <Property Name="QUAN" Type="nvarchar(max)" />
+          <Property Name="KHUVUC" Type="nvarchar(max)" />
+          <Property Name="DIACHIKHACHHANG" Type="nvarchar(max)" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DISCOUNT">
+          <Key>
+            <PropertyRef Name="MAGIAMGIA" />
+          </Key>
+          <Property Name="MAGIAMGIA" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="PHANTRAMGIAM" Type="int" />
+          <Property Name="SOTIENGIAM" Type="float" />
+          <Property Name="NGAYBATDAU" Type="date" />
+          <Property Name="NGAYKETTHUC" Type="date" />
+          <Property Name="SOLUONG" Type="int" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="TENNV" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYSINHNV" Type="datetime" />
+          <Property Name="DIACHINV" Type="nvarchar(max)" />
+          <Property Name="SDT_NV" Type="char" MaxLength="11" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="30" />
+          <Property Name="GIOITINH" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="MACHITIET" />
+          </Key>
+          <Property Name="MACHITIET" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MASP" Type="char" MaxLength="50" />
+          <Property Name="MADH" Type="int" />
+          <Property Name="SOLUONG" Type="int" />
+          <Property Name="DONGIA" Type="float" />
+        </EntityType>
+        <EntityType Name="OrderPro">
+          <Key>
+            <PropertyRef Name="MATHANHTOAN" />
+          </Key>
+          <Property Name="MADATHANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MASP" Type="int" />
+          <Property Name="NGAYDAT" Type="datetime" />
+          <Property Name="MAKH" Type="char" MaxLength="20" />
+          <Property Name="DIACHIGIAOHANG" Type="nvarchar(max)" />
+          <Property Name="MATHANHTOAN" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="PHUONGTHUCTTHANHTOAN" Type="char" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="MAKH" Type="char" MaxLength="5" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="NGAYTHANHTOAN" Type="date" />
+          <Property Name="MATHANHTOAN" Type="char" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="MATHANHTOAN" />
+          </Key>
+          <Property Name="MATHANHTOAN" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="VNPAY" Type="char" MaxLength="10" />
+          <Property Name="TIENMAT" Type="char" MaxLength="10" />
+          <Property Name="MOMO" Type="char" MaxLength="10" />
+          <Property Name="ZALOPAY" Type="char" MaxLength="10" />
+          <Property Name="SHOPPEEPAY" Type="char" MaxLength="10" />
+          <Property Name="THENGANHANG" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="TENSP" Type="nvarchar(max)" />
+          <Property Name="MALOAIHANG" Type="char" MaxLength="20" />
+          <Property Name="HINHSP" Type="nvarchar(max)" />
+          <Property Name="MOTA" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProductsDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MALOAIHANG" Type="char" MaxLength="20" />
+          <Property Name="MASP" Type="char" MaxLength="50" />
+          <Property Name="GIA" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KICHCO" Type="bit" />
+          <Property Name="TOPPING" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__OrderDetai__MASP__48CFD27E">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderPro__MAKH__45F365D3">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="OrderPro">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ACC_EMP_TO_EMP">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="ACCOUNT_EMPLOYEE" Type="Self.ACCOUNT_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="ACCOUNT_EMPLOYEE">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro1_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="MALOAIHANG" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="MALOAIHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro2_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ProductsDetail" Type="Self.ProductsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="MALOAIHANG" />
+            </Principal>
+            <Dependent Role="ProductsDetail">
+              <PropertyRef Name="MALOAIHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro3_Category">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductsDetail" Type="Self.ProductsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="ProductsDetail">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro4_Category">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro5_Category">
+          <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPro">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proo_Category">
+          <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPro">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Principal>
+            <Dependent Role="PaymentMethod">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_TCHModelStoreContainer">
+          <EntitySet Name="ACCOUNT_EMPLOYEE" EntityType="Self.ACCOUNT_EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISCOUNT" EntityType="Self.DISCOUNT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderPro" EntityType="Self.OrderPro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsDetail" EntityType="Self.ProductsDetail" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OrderDetai__MASP__48CFD27E" Association="Self.FK__OrderDetai__MASP__48CFD27E">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderPro__MAKH__45F365D3" Association="Self.FK__OrderPro__MAKH__45F365D3">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="OrderPro" EntitySet="OrderPro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ACC_EMP_TO_EMP" Association="Self.FK_ACC_EMP_TO_EMP">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="ACCOUNT_EMPLOYEE" EntitySet="ACCOUNT_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro1_Category" Association="Self.FK_Pro1_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro2_Category" Association="Self.FK_Pro2_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProductsDetail" EntitySet="ProductsDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro3_Category" Association="Self.FK_Pro3_Category">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductsDetail" EntitySet="ProductsDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro4_Category" Association="Self.FK_Pro4_Category">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro5_Category" Association="Self.FK_Pro5_Category">
+            <End Role="OrderPro" EntitySet="OrderPro" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proo_Category" Association="Self.FK_Proo_Category">
+            <End Role="OrderPro" EntitySet="OrderPro" />
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QL_TCHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACCOUNT_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="TENDANGNHAPNV" />
+          </Key>
+          <Property Name="TENDANGNHAPNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MATKHAUNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MANV" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LOAITAIKHOAN" Type="Int32" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_ACC_EMP_TO_EMP" FromRole="ACCOUNT_EMPLOYEE" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="MALOAIHANG" />
+          </Key>
+          <Property Name="MALOAIHANG" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENLOAIHANG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Pro1_Category" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="ProductsDetails" Relationship="Self.FK_Pro2_Category" FromRole="Category" ToRole="ProductsDetail" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENKH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="OTP" Type="Int32" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+          <Property Name="THANHPHO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QUAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KHUVUC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHIKHACHHANG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderProes" Relationship="Self.FK__OrderPro__MAKH__45F365D3" FromRole="Customer" ToRole="OrderPro" />
+        </EntityType>
+        <EntityType Name="DISCOUNT">
+          <Key>
+            <PropertyRef Name="MAGIAMGIA" />
+          </Key>
+          <Property Name="MAGIAMGIA" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PHANTRAMGIAM" Type="Int32" />
+          <Property Name="SOTIENGIAM" Type="Double" />
+          <Property Name="NGAYBATDAU" Type="DateTime" Precision="0" />
+          <Property Name="NGAYKETTHUC" Type="DateTime" Precision="0" />
+          <Property Name="SOLUONG" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="MANV" />
+          </Key>
+          <Property Name="MANV" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSINHNV" Type="DateTime" Precision="3" />
+          <Property Name="DIACHINV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT_NV" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ACCOUNT_EMPLOYEE" Relationship="Self.FK_ACC_EMP_TO_EMP" FromRole="EMPLOYEE" ToRole="ACCOUNT_EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="MACHITIET" />
+          </Key>
+          <Property Name="MACHITIET" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MASP" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="MADH" Type="Int32" />
+          <Property Name="SOLUONG" Type="Int32" />
+          <Property Name="DONGIA" Type="Double" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderDetai__MASP__48CFD27E" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="OrderPro">
+          <Key>
+            <PropertyRef Name="MATHANHTOAN" />
+          </Key>
+          <Property Name="MADATHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MASP" Type="Int32" />
+          <Property Name="NGAYDAT" Type="DateTime" Precision="3" />
+          <Property Name="MAKH" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="DIACHIGIAOHANG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MATHANHTOAN" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PHUONGTHUCTTHANHTOAN" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__OrderPro__MAKH__45F365D3" FromRole="OrderPro" ToRole="Customer" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Pro5_Category" FromRole="OrderPro" ToRole="Payment" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_Proo_Category" FromRole="OrderPro" ToRole="PaymentMethod" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MAKH" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYTHANHTOAN" Type="DateTime" Precision="0" />
+          <Property Name="MATHANHTOAN" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="OrderPro" Relationship="Self.FK_Pro5_Category" FromRole="Payment" ToRole="OrderPro" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Pro4_Category" FromRole="Payment" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="MATHANHTOAN" />
+          </Key>
+          <Property Name="MATHANHTOAN" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="VNPAY" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="TIENMAT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MOMO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ZALOPAY" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SHOPPEEPAY" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="THENGANHANG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="OrderPro" Relationship="Self.FK_Proo_Category" FromRole="PaymentMethod" ToRole="OrderPro" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="MASP" />
+          </Key>
+          <Property Name="MASP" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MALOAIHANG" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="HINHSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MOTA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Pro1_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDetai__MASP__48CFD27E" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Pro4_Category" FromRole="Product" ToRole="Payment" />
+          <NavigationProperty Name="ProductsDetails" Relationship="Self.FK_Pro3_Category" FromRole="Product" ToRole="ProductsDetail" />
+        </EntityType>
+        <EntityType Name="ProductsDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MALOAIHANG" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="MASP" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="GIA" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KICHCO" Type="Boolean" />
+          <Property Name="TOPPING" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Pro2_Category" FromRole="ProductsDetail" ToRole="Category" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Pro3_Category" FromRole="ProductsDetail" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_ACC_EMP_TO_EMP">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="ACCOUNT_EMPLOYEE" Type="Self.ACCOUNT_EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="MANV" />
+            </Principal>
+            <Dependent Role="ACCOUNT_EMPLOYEE">
+              <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro1_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="MALOAIHANG" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="MALOAIHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro2_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ProductsDetail" Type="Self.ProductsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="MALOAIHANG" />
+            </Principal>
+            <Dependent Role="ProductsDetail">
+              <PropertyRef Name="MALOAIHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderPro__MAKH__45F365D3">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="OrderPro">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDetai__MASP__48CFD27E">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro5_Category">
+          <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPro">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proo_Category">
+          <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPro">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Principal>
+            <Dependent Role="PaymentMethod">
+              <PropertyRef Name="MATHANHTOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro4_Category">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro3_Category">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductsDetail" Type="Self.ProductsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="ProductsDetail">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_TCHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCOUNT_EMPLOYEE" EntityType="Self.ACCOUNT_EMPLOYEE" />
+          <EntitySet Name="AdminUsers" EntityType="Self.AdminUser" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="DISCOUNTs" EntityType="Self.DISCOUNT" />
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="OrderProes" EntityType="Self.OrderPro" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductsDetails" EntityType="Self.ProductsDetail" />
+          <AssociationSet Name="FK_ACC_EMP_TO_EMP" Association="Self.FK_ACC_EMP_TO_EMP">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="ACCOUNT_EMPLOYEE" EntitySet="ACCOUNT_EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro1_Category" Association="Self.FK_Pro1_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro2_Category" Association="Self.FK_Pro2_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ProductsDetail" EntitySet="ProductsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderPro__MAKH__45F365D3" Association="Self.FK__OrderPro__MAKH__45F365D3">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="OrderPro" EntitySet="OrderProes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDetai__MASP__48CFD27E" Association="Self.FK__OrderDetai__MASP__48CFD27E">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro5_Category" Association="Self.FK_Pro5_Category">
+            <End Role="OrderPro" EntitySet="OrderProes" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proo_Category" Association="Self.FK_Proo_Category">
+            <End Role="OrderPro" EntitySet="OrderProes" />
+            <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro4_Category" Association="Self.FK_Pro4_Category">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro3_Category" Association="Self.FK_Pro3_Category">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductsDetail" EntitySet="ProductsDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QL_TCHModelStoreContainer" CdmEntityContainer="QL_TCHEntities">
+          <EntitySetMapping Name="ACCOUNT_EMPLOYEE">
+            <EntityTypeMapping TypeName="QL_TCHModel.ACCOUNT_EMPLOYEE">
+              <MappingFragment StoreEntitySet="ACCOUNT_EMPLOYEE">
+                <ScalarProperty Name="TENDANGNHAPNV" ColumnName="TENDANGNHAPNV" />
+                <ScalarProperty Name="MATKHAUNV" ColumnName="MATKHAUNV" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="LOAITAIKHOAN" ColumnName="LOAITAIKHOAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUsers">
+            <EntityTypeMapping TypeName="QL_TCHModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
+                <ScalarProperty Name="RoleUser" ColumnName="RoleUser" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="QL_TCHModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="MALOAIHANG" ColumnName="MALOAIHANG" />
+                <ScalarProperty Name="TENLOAIHANG" ColumnName="TENLOAIHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="QL_TCHModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="TENKH" ColumnName="TENKH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="THANHPHO" ColumnName="THANHPHO" />
+                <ScalarProperty Name="QUAN" ColumnName="QUAN" />
+                <ScalarProperty Name="KHUVUC" ColumnName="KHUVUC" />
+                <ScalarProperty Name="DIACHIKHACHHANG" ColumnName="DIACHIKHACHHANG" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISCOUNTs">
+            <EntityTypeMapping TypeName="QL_TCHModel.DISCOUNT">
+              <MappingFragment StoreEntitySet="DISCOUNT">
+                <ScalarProperty Name="MAGIAMGIA" ColumnName="MAGIAMGIA" />
+                <ScalarProperty Name="PHANTRAMGIAM" ColumnName="PHANTRAMGIAM" />
+                <ScalarProperty Name="SOTIENGIAM" ColumnName="SOTIENGIAM" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="QL_TCHModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="TENNV" ColumnName="TENNV" />
+                <ScalarProperty Name="NGAYSINHNV" ColumnName="NGAYSINHNV" />
+                <ScalarProperty Name="DIACHINV" ColumnName="DIACHINV" />
+                <ScalarProperty Name="SDT_NV" ColumnName="SDT_NV" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="QL_TCHModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="MACHITIET" ColumnName="MACHITIET" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderProes">
+            <EntityTypeMapping TypeName="QL_TCHModel.OrderPro">
+              <MappingFragment StoreEntitySet="OrderPro">
+                <ScalarProperty Name="MADATHANG" ColumnName="MADATHANG" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="DIACHIGIAOHANG" ColumnName="DIACHIGIAOHANG" />
+                <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
+                <ScalarProperty Name="PHUONGTHUCTTHANHTOAN" ColumnName="PHUONGTHUCTTHANHTOAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="QL_TCHModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="NGAYTHANHTOAN" ColumnName="NGAYTHANHTOAN" />
+                <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="QL_TCHModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
+                <ScalarProperty Name="VNPAY" ColumnName="VNPAY" />
+                <ScalarProperty Name="TIENMAT" ColumnName="TIENMAT" />
+                <ScalarProperty Name="MOMO" ColumnName="MOMO" />
+                <ScalarProperty Name="ZALOPAY" ColumnName="ZALOPAY" />
+                <ScalarProperty Name="SHOPPEEPAY" ColumnName="SHOPPEEPAY" />
+                <ScalarProperty Name="THENGANHANG" ColumnName="THENGANHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="QL_TCHModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+                <ScalarProperty Name="MALOAIHANG" ColumnName="MALOAIHANG" />
+                <ScalarProperty Name="HINHSP" ColumnName="HINHSP" />
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsDetails">
+            <EntityTypeMapping TypeName="QL_TCHModel.ProductsDetail">
+              <MappingFragment StoreEntitySet="ProductsDetail">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MALOAIHANG" ColumnName="MALOAIHANG" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+                <ScalarProperty Name="KICHCO" ColumnName="KICHCO" />
+                <ScalarProperty Name="TOPPING" ColumnName="TOPPING" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

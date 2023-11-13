@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TheCoffeeHouse_TCH.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENLOAIHANG)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENLOAIHANG)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MALOAIHANG }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MALOAIHANG }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MALOAIHANG })
+        </td>
+    </tr>
+}
+
+</table>
