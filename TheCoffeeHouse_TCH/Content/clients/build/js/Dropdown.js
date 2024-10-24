@@ -38,7 +38,7 @@ class Dropdown {
     this._element = element
   }
 
-  // Public
+  // Public out
 
   toggleSubmenu() {
     this._element.siblings().show().toggleClass('show')
